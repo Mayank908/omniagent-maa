@@ -42,6 +42,7 @@ graph TD
     
     MF -->|Pattern Extraction| Observer[ReportAgent]
     Observer -->|Simulation Report| UI
+```
 
 ## 👥 The Founding Team
 
@@ -63,7 +64,7 @@ omniagent-maa/
 ├── context_vault/          # Markdown Domain Blueprints (The "Brain")
 ├── frontend/               # Next.js 14 War Room Dashboard
 └── docker-compose.yml      # Local Mainframe Environment
-
+```
 
 ---
 
