@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # The Memory: Neo4j Graph Database (GraphRAG Persistence)
+  neo4j:
+    image: neo4j:5.15-community
+    container_name: maa-memory
+    ports:
+      - "7474:7474" # HTTP UI
+      - "7687:7687" # Bolt Protocol
+    environment:
+      - NEO4J_AUTH=neo4j/mirofish_maa
+      - NEO4J_PLUGINS=["apoc"]
+    volumes:
+      - neo4j_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://localhost:7474 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # The Brain: Ollama Local Inference (Swarm Intelligence)
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   container_name: maa-brain
+  #   ports:
+  #     - "11434:11434"
+  #   volumes:
+  #     - ollama_data:/root/.ollama
+  #   # Add restart policy to ensure availability
+  #   restart: always
+
+volumes:
+  neo4j_data:
+  # ollama_data:
